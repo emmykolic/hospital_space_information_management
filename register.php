@@ -29,8 +29,8 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="sr-only" for="mat_no">Matriculation Number</label>
-                    <input class="form-control" type="text" id="mat_no" name="mat_no" placeholder="Your Matriculation Number*" required="required" data-validation-required-message="Please enter your Matriculation Number."/>
+                    <label class="sr-only" for="mat_no">Staff Number</label>
+                    <input class="form-control" type="text" id="staff_no" name="staff_no" placeholder="Your Staff Number*" required="required" data-validation-required-message="Please enter your Staff Number."/>
                     <p class="help-block text-danger"></p>
                   </div>
 
@@ -46,16 +46,12 @@
                     <p class="help-block text-danger"></p>
                   </div>
 
-                  <div class="form-group">
-                    <label class="sr-only" for="placement">Name of your IT/SIWES place</label>
+                  <!-- <div class="form-group">
+                    <label class="sr-only" for="placement"></label>
                     <input class="form-control" type="text" id="placement" name="placement" placeholder="Your IT/SIWES place*" required="required" data-validation-required-message="Please enter your IT/SIWES place."/>
                     <p class="help-block text-danger"></p>
-                  </div>
+                  </div> -->
 
-                  <div class="form-group">
-                    <textarea class="form-control" rows="3" id="placement_address" name="placement_address" placeholder="Your IT/SIWES place address*" required="required" data-validation-required-message="Please enter your IT/SIWES place address."></textarea>
-                    <p class="help-block text-danger"></p>
-                  </div>
                   <div class="text-center">
                     <button class="btn btn-block btn-round btn-d" type="submit" name="submit">Register</button>
                   </div>

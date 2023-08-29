@@ -20,8 +20,8 @@
 
 
             <div class="form-group">
-              <label class="sr-only" for="mat_no">Matriculation Number or email</label>
-              <input class="form-control" type="text" id="mat_no" name="mat_no" placeholder="Your Matriculation Number*" required="required" data-validation-required-message="Please enter your Matriculation Number." />
+              <label class="sr-only" for="staff_no">Staff Number or email</label>
+              <input class="form-control" type="text" id="staff_no" name="staff_no" placeholder="Your Staff Number*" required="required" data-validation-required-message="Please enter your Staff Number." />
               <p class="help-block text-danger"></p>
             </div>
 

@@ -12,9 +12,7 @@ $project->bouncer();
           <h6 class="font-alt"><span class=" icon-profile-male"></span> Name: <?= $project->fullname ?></h6>
           <h6 class="font-alt"><span class="icon-envelope"></span> Email:<?= $project->email ?></h6>
           <?php if ($project->type < 5) : ?>
-            <h6 class="font-alt"><span class="icon-target"></span> Score:<?= $project->score ?></h6>
-            <h6 class="font-alt"><span class="icon-toolbox"></span> Matriculation Number: <?= $project->mat_no ?></h6>
-            <h6 class="font-alt"><span class=" icon-map"></span> IT Place Address: <?= $project->placement ?></h6>
+            <h6 class="font-alt"><span class="icon-toolbox"></span> Matriculation Number: <?= $project->staff_no ?></h6>
           <?php endif; ?>
         </div>
       </div>

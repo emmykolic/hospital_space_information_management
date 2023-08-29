@@ -3,7 +3,7 @@ session_start();
 DEFINE('DBHOST', 'localhost');
 DEFINE('DBUSR', 'root');
 DEFINE('DBPASS', '');
-DEFINE('DB', 'vlogbook');
+DEFINE('DB', 'hospital_space_management_system');
 
 class project
 {
@@ -105,6 +105,6 @@ class project
     }
 }
 
-$project = new project("Virtual Log Book");
+$project = new project("Hospital Space Management System");
 
 ?>

@@ -1,8 +1,11 @@
 <?php
 include_once("config.php");
 $project->bouncer();
+include_once("header.php"); 
+$uid = $project->uid;
+$prow = $project->db->query("SELECT * FROM users WHERE uid='$uid' ");
+$prow = $prow->fetch_assoc();
 ?>
-<?php include_once("header.php"); ?>
 <div class="main">
 
   <section class="module mb-5 pb-0">
@@ -11,10 +14,23 @@ $project->bouncer();
         <div class="col-sm-6">
           <h6 class="font-alt"><span class=" icon-profile-male"></span> Name: <?= $project->fullname ?></h6>
           <h6 class="font-alt"><span class="icon-envelope"></span> Email:<?= $project->email ?></h6>
-          <?php if ($project->type < 5) : ?>
-            <h6 class="font-alt"><span class="icon-toolbox"></span> Matriculation Number: <?= $project->staff_no ?></h6>
+          <?php if (isset($project->type)) : ?>
+            <h6 class="font-alt"><span class="icon-toolbox"></span> Hospital Number: <?= $project->staff_no ?></h6>
+            <h6 class="font-alt"><span class="icon-target"></span> Status:  <?= $project->status ?></h6>
           <?php endif; ?>
+          <?php if($project->type == 5 && $project->clinical_staff == 2): ?>
+          <a href="add_patient.php" class="patient_button btn btn-primary">Make Ward Changes</a>
+          <?php endif;?>
+          <?php if($project->type == 7 && $project->supervisor == 5): ?>
+          <a href="add_patient.php" class="patient_button btn btn-primary">Allocates Spaces To Department</a>
+          <?php endif;?>
         </div>
+        <?php if($project->type == 7 && $project->supervisor == 5): ?>
+        <a href="create_spaces.php?uid=<?= $prow['uid'] ?>" class="spaces_button btn btn-primary">Create Spaces</a>
+        <?php endif;?>
+        <?php if($project->type == 5 && $project->clinical_staff == 2): ?>
+        <a href="add_patient.php" class="spaces_button btn btn-primary">Check Equipment Availabilty</a>
+        <?php endif;?>
       </div>
     </div>
   </section>
@@ -24,47 +40,48 @@ $project->bouncer();
       <?php if ($project->type == 1) : ?>
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
-            <h2>My Log Book Entries <a href="add_entry.php" class="btn btn-primary">Add Log Book Entry</a></h2>
+            <h3>My Hospital Space Management Entry! <a href="add_entry.php" class="btn btn-primary">Check For Spaces</a></h3>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
             <?php $uid = $project->uid; ?>
 
-            <?php $weeks = $project->db->query("SELECT week,comment FROM logbook WHERE uid='$uid' GROUP BY WEEK ORDER BY week ASC"); ?>
-            <?php if ($weeks->num_rows > 0) : ?>
-              <?php while ($row = $weeks->fetch_assoc()) : ?>
+            <?php //$weeks = $project->db->query("SELECT week,comment FROM logbook WHERE uid='$uid' GROUP BY WEEK ORDER BY week ASC"); ?>
+            <?php //if ($weeks->num_rows > 0) : ?>
+              <?php //while ($row = $weeks->fetch_assoc()) : ?>
                 <?php
-                $current_week = $row['week'];
-                $current_comment = $row['comment'];
+                // $current_week = $row['week'];
+                // $current_comment = $row['comment'];
                 ?>
-                <?php $list = $project->db->query("SELECT * FROM logbook WHERE uid='$uid' AND week='$current_week' ORDER BY entry_date DESC"); ?>
+                <?php //$list = $project->db->query("SELECT * FROM logbook WHERE uid='$uid' AND week='$current_week' ORDER BY entry_date DESC"); ?>
 
                 <table class="table table-striped table-border checkout-table table-responsive">
                   <tbody>
-                    <?php while ($row = $list->fetch_assoc()) : ?>
+                    <?php //while ($row = $list->fetch_assoc()) : ?>
                       <tr>
-                        <td><b>WEEK <?= $row['week'] ?>, <?= $row['entry_date'] ?></b></td>
+                        
+                      </tr>
+                    <?php //endwhile; ?>
+                    <tr>
+                      <td><b>WEEK <?=$row['week'] ?>, <?= $row['entry_date'] ?></b></td>
                         <td> <?= $row['entry'] ?></td>
                         <td> <a href="delete_entry.php?lid=<?= $row['lid'] ?>"><i class="fa fa-trash text-danger"></i></a></td>
-                      </tr>
-                    <?php endwhile; ?>
-                    <tr>
                       <td colspan="3"><b>WEEK <?= $current_week ?> COMMENT </b><br><?= $current_comment ?> </td>
                     </tr>
                   </tbody>
                 </table>
-              <?php endwhile; ?>
-            <?php else : ?>
+              <?php //endwhile; ?>
+            <?php //else : ?>
               <div class="alert alert-warning">NO activity logged </div>
-            <?php endif; ?>
+            <?php //endif; ?>
 
           </div>
         </div>
       <?php elseif ($project->type == 5) : ?>
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
-            <h2>IT/SIWES Students</h2>
+            <h2>View Assigned Spaces</h2>
           </div>
         </div>
         <div class="row">
@@ -97,7 +114,7 @@ $project->bouncer();
       <?php elseif ($project->type == 7) : ?>
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
-            <h2>IT/SIWES Students</h2>
+            <h2>Facilitator Administrator</h2>
           </div>
         </div>
         <div class="row">

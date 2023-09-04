@@ -40,6 +40,13 @@ iframe {
   left: auto !important;
 }
 
+.spaces_button{
+  /* display: block; */
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 /* Transition elsements */
 a,
 .btn {

@@ -1,5 +1,5 @@
 <?php include_once("config.php"); 
-$project->bouncer_editor();
+$project->bouncer_manager();
 if(isset($_GET['uid'])){
     $uid=$_GET['uid'];
     $list=$project->db->query("SELECT * FROM users WHERE type<9 AND supervisor=0");
@@ -20,7 +20,7 @@ if(isset($_GET['uid'])){
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
-              <h2 class="module-title font-alt">Allocate Student</h2> 
+              <h2 class="module-title font-alt">Create Spaces</h2> 
                 <?php $project->get_alert(); ?>
                 <form role="form" method="post" action="add_student_action.php">
                   <input type="hidden" name="supervisor" value="<?=$uid?>">

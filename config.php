@@ -86,6 +86,24 @@ class project
         }
     }
 
+    public function bouncer_manager()
+    {
+        if (isset($_SESSION['auth'])) {
+            $auth = $_SESSION['auth'];
+            $user = $this->db->query("SELECT * FROM  users WHERE  email='$auth' AND type>=7  ");
+            if ($user->num_rows > 0) {
+                $user = $user->fetch_assoc();
+                foreach ($user as $key => $value) {
+                    $this->{$key} = $value;
+                }
+            } else {
+                die(header("Location:login.php"));
+            }
+        } else {
+            die(header("Location:login.php"));
+        }
+    }
+
     public function bouncer_editor()
     {
         if (isset($_SESSION['auth'])) {

@@ -1,7 +1,7 @@
 <?php include_once("config.php"); ?>
 <?php include_once("header.php"); ?>
       <div class="main">
-        <section class="module bg-dark-60 about-page-header" data-background="assets/images/about_bg.jpg">
+        <section class="module bg-dark-60 about-page-header" data-background="assets/images/nurse2.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">

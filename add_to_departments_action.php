@@ -1,13 +1,13 @@
 <?php
 include_once("config.php");
-$project->bouncer_admin();
+$project->bouncer_manager();
 $error = 0;
 $error_msg = "";
 if (isset($_POST['submit'])) {
-    $student = $project->post("student");
-    $supervisor = $project->post("supervisor");
+    $departments = $project->post("departments");
+    $facilitator = $project->post("facilitator");
 
-    if ($student == "" || $supervisor == "") {
+    if ($departments == "" || $facilitator == "") {
         $error = 1;
         $error_msg .= "All fields are compulsary <br>";
     }
@@ -17,8 +17,8 @@ if (isset($_POST['submit'])) {
 }
 
 if ($error == 0) {
-    $project->db->query("UPDATE users SET company='$supervisor' WHERE uid='$student'");
-    $project->set_alert("success", "Supervisor account was successfully created");
+    $project->db->query("UPDATE spaces SET departments='$departments' WHERE sid='$facilitator'");
+    $project->set_alert("success", "A Ward was successfully Allocated To A Department");
     header("location:home.php");
 } else {
     $project->set_alert("danger", $error_msg);

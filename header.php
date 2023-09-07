@@ -52,6 +52,9 @@
                   <?php if($project->type == 1): ?>
                   <li><a href="home.php">Check For Spaces</a></li>
                   <?php endif; ?>
+                  <?php if($project->type == 7): ?>
+                  <li><a href="create_departments.php">Create Departments</a></li>
+                  <?php endif; ?>
                   
                   <li><a href="logout.php">logout</a></li>
                 </ul>

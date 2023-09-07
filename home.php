@@ -1,7 +1,7 @@
 <?php
 include_once("config.php");
 $project->bouncer();
-include_once("header.php"); 
+include_once("header.php");
 $uid = $project->uid;
 $prow = $project->db->query("SELECT * FROM users WHERE uid='$uid' ");
 $prow = $prow->fetch_assoc();
@@ -22,7 +22,7 @@ $prow = $prow->fetch_assoc();
           <a href="add_patient.php" class="patient_button btn btn-primary">Make Ward Changes</a>
           <?php endif;?>
           <?php if($project->type == 7 && $project->supervisor == 5): ?>
-          <a href="add_patient.php" class="patient_button btn btn-primary">Allocates Spaces To Department</a>
+          <a href="allocate_spaces.php" class="patient_button btn btn-primary">Allocates Spaces To Department</a>
           <?php endif;?>
         </div>
         <?php if($project->type == 7 && $project->supervisor == 5): ?>
@@ -88,15 +88,25 @@ $prow = $prow->fetch_assoc();
           <div class="col-sm-8 col-sm-offset-2">
             <?php
             $uid = $project->uid;
-            $list = $project->db->query("SELECT * FROM users WHERE supervisor='$uid'");
+            $list = $project->db->query("SELECT * FROM spaces ");
             if ($list->num_rows > 0) :
             ?>
               <table class="table table-striped table-border checkout-table table-responsive">
+                <thead>
+                  <th>Gynacologist</th>
+                  <th>Maternity</th>
+                  <th>Surgeons</th>
+                  <th>Psychiatrist</th>
+                  <th>Internal Mediicine</th>
+                </thead>
                 <tbody>
                   <?php while ($row = $list->fetch_assoc()) : ?>
                     <tr>
-                      <td><b>Staff ID: <?= $row['mat_no'] ?>, <?= $row['email'] ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-success">CURRENT SCORE: <?= $row['score'] ?></span></b> <br>
-                        <?= ucwords($row['fullname']) ?>
+                      <td><b>Ward: <?= $row['ward_number'] ?></b></td> 
+                      <td><?= $row['email'] ?></td>
+                      <td><b><span class="text-success">CURRENT SCORE: <?= $row['score'] ?></span></b></td>
+                      <td><?= ucwords($row['fullname']) ?></td>
+                      <td>
                         <a href="view_log.php?uid=<?= $row['uid'] ?>" class="text-white badge bg-success badge-pills">View Log</a>
                         <a href="score.php?uid=<?= $row['uid'] ?>" class="text-white badge bg-success badge-pills">Score</a>
                       </td>
@@ -105,7 +115,7 @@ $prow = $prow->fetch_assoc();
                 </tbody>
               </table>
             <?php else : ?>
-              <div class="alert alert-warning">You Have No Students</div>
+              <div class="alert alert-warning">No Ward Has Been Assigned!</div>
             <?php endif; ?>
 
           </div>
@@ -121,24 +131,34 @@ $prow = $prow->fetch_assoc();
           <div class="col-sm-8 col-sm-offset-2">
             <?php
             $uid = $project->uid;
-            $list = $project->db->query("SELECT * FROM users WHERE company='$uid'");
+            $list = $project->db->query("SELECT * FROM spaces");
             if ($list->num_rows > 0) :
             ?>
               <table class="table table-striped table-border checkout-table table-responsive">
+                <thead>
+                  <th>Ward Number</th>
+                  <th>Bed Ward By Ward</th>
+                  <th>Departments</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                  </thead>
                 <tbody>
                   <?php while ($row = $list->fetch_assoc()) : ?>
                     <tr>
-                      <td><b>Staff ID: <?= $row['mat_no'] ?>, <?= $row['email'] ?></b> <br>
-                        <?= ucwords($row['fullname']) ?>
-                        <a href="view_log.php?uid=<?= $row['uid'] ?>" class="text-white badge bg-success badge-pills">View Log</a>
-                        <a href="comment.php?uid=<?= $row['uid'] ?>" class="text-white badge bg-success badge-pills">Add comment</a>
+                      <td> <b>Ward</b> <?= $row['ward_number'] ?></td>
+                      <td> <b><?= $row['bed_ward_by_ward'] ?></b> Bed's</td>
+                      <td><b><?=$row['departments']?></b></td>
+                      <td> <b><?= $row['date_created'] ?></b></td>
+                      <td>
+                        <a href="update_spaces.php?sid=<?= $row['sid'] ?>" class="text-white badge bg-info badge-pills"><i class="fa fa-edit"></i></a>
+                        <a href="delete_spaces.php?sid=<?= $row['sid'] ?>" class="text-white badge bg-danger badge-pills"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                   <?php endwhile; ?>
                 </tbody>
               </table>
             <?php else : ?>
-              <div class="alert alert-warning">You Have No Students</div>
+              <div class="alert alert-warning">You Have Not Created Any Space</div>
             <?php endif; ?>
 
           </div>

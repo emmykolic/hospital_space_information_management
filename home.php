@@ -1,7 +1,7 @@
 <?php
 include_once("config.php");
 $project->bouncer();
-include_once("header.php");
+// include_once("header.php");
 $uid = $project->uid;
 $prow = $project->db->query("SELECT * FROM users WHERE uid='$uid' ");
 $prow = $prow->fetch_assoc();
@@ -19,7 +19,7 @@ $prow = $prow->fetch_assoc();
             <h6 class="font-alt"><span class="icon-target"></span> Status:  <?= $project->status ?></h6>
           <?php endif; ?>
           <?php if($project->type == 5 && $project->clinical_staff == 2): ?>
-          <a href="add_patient.php" class="patient_button btn btn-primary">Make Ward Changes</a>
+          <a href="make_ward_changes.php" class="patient_button btn btn-primary">Make Ward Changes</a>
           <?php endif;?>
           <?php if($project->type == 7 && $project->supervisor == 5): ?>
           <a href="allocate_spaces.php" class="patient_button btn btn-primary">Allocates Spaces To Department</a>
@@ -29,7 +29,7 @@ $prow = $prow->fetch_assoc();
         <a href="create_spaces.php?uid=<?= $prow['uid'] ?>" class="spaces_button btn btn-primary">Create Spaces</a>
         <?php endif;?>
         <?php if($project->type == 5 && $project->clinical_staff == 2): ?>
-        <a href="add_patient.php" class="spaces_button btn btn-primary">Check Equipment Availabilty</a>
+        <a href="equipment_availabilty.php" class="spaces_button btn btn-primary">Check Equipment Availabilty</a>
         <?php endif;?>
       </div>
     </div>
@@ -85,10 +85,12 @@ $prow = $prow->fetch_assoc();
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-8 col-sm-offset-2">
+          <div class="col-sm-11 offset-sm-2">
             <?php
-            $uid = $project->uid;
-            $list = $project->db->query("SELECT * FROM spaces ");
+            // $uid = $project->uid;
+            $get_value = $project->db->query("SELECT departments FROM spaces ");
+            $get_values = $get_value->fetch_assoc();
+            $list = $project->db->query("SELECT * FROM spaces WHERE departments = '$get_values' ");
             if ($list->num_rows > 0) :
             ?>
               <table class="table table-striped table-border checkout-table table-responsive">
@@ -103,13 +105,10 @@ $prow = $prow->fetch_assoc();
                   <?php while ($row = $list->fetch_assoc()) : ?>
                     <tr>
                       <td><b>Ward: <?= $row['ward_number'] ?></b></td> 
-                      <td><?= $row['email'] ?></td>
-                      <td><b><span class="text-success">CURRENT SCORE: <?= $row['score'] ?></span></b></td>
-                      <td><?= ucwords($row['fullname']) ?></td>
-                      <td>
-                        <a href="view_log.php?uid=<?= $row['uid'] ?>" class="text-white badge bg-success badge-pills">View Log</a>
-                        <a href="score.php?uid=<?= $row['uid'] ?>" class="text-white badge bg-success badge-pills">Score</a>
-                      </td>
+                      <td></td>
+                      <td><b><span class="text-success">CURRENT SCORE: </span></b></td>
+                      <td></td>
+                      <td></td>
                     </tr>
                   <?php endwhile; ?>
                 </tbody>

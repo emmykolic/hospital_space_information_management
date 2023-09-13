@@ -14,7 +14,7 @@ include("header.php");
             $lists = $project->db->query("SELECT * FROM spaces "); //WHERE sid = '$sid'
             $unallocted = $project->db->query("SELECT * FROM spaces "); //WHERE sid='$sid'
             $unallocted = $unallocted->num_rows;
-            print_r($unallocted);
+            // print_r($unallocted);
             
             if ($lists->num_rows > 0) :?>
                 <?php if ($unallocted == 0) : ?>

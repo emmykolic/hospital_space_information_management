@@ -108,7 +108,7 @@ class project
     {
         if (isset($_SESSION['auth'])) {
             $auth = $_SESSION['auth'];
-            $user = $this->db->query("SELECT * FROM  users WHERE  email='$auth' AND type>=5  ");
+            $user = $this->db->query("SELECT * FROM  users WHERE  email='$auth' AND type=1  ");
             if ($user->num_rows > 0) {
                 $user = $user->fetch_assoc();
                 foreach ($user as $key => $value) {

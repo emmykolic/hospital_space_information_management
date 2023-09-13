@@ -1,19 +1,19 @@
 <?php 
 include_once("config.php");
-$project->bouncer();
+$project->bouncer_admin();
 $error=0;
 $error_msg="";
-if(isset($_GET['lid'])){
+if(isset($_GET['el_id'])){
     $uid=$project->uid;
-    $lid=$_GET['lid'];
+    $el_id=$_GET['el_id'];
 }else{
     $error=1;
     $error_msg.="invalid request <br>"; 
 }
 
 if($error==0){
-    $project->db->query("DELETE FROM logbook WHERE lid='$lid' AND uid='$uid' ");
-    $project->set_alert("success", "your entry was deleted");
+    $project->db->query("DELETE FROM equipment_location WHERE el_id='$el_id' ");
+    $project->set_alert("danger", "This Equipment Has Been Deleted");
    header("location:home.php");
 }else{
     $project->set_alert("danger", $error_msg);

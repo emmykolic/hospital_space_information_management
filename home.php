@@ -18,7 +18,7 @@ $prow = $prow->fetch_assoc();
             <h6 class="font-alt"><span class="icon-toolbox"></span> Hospital Number: <?= $project->staff_no ?></h6>
             <h6 class="font-alt"><span class="icon-target"></span> Status:  <?= $project->status ?></h6>
           <?php endif; ?>
-          <?php if($project->type == 1 && $project->clinical_staff == 2): ?>
+          <?php if($project->type == 1): ?>
           <a href="equipment_availabilty.php" class="patient_button btn btn-primary">Check Available Equipment</a>
           <?php endif;?>
           <?php if($project->type == 7 && $project->supervisor == 5): ?>

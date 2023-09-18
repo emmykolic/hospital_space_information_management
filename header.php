@@ -49,9 +49,6 @@
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><?= ucwords($project->fullname) ?></a>
                 <ul class="dropdown-menu">
                   <li><a href="home.php">My Account</a></li>
-                  <?php if($project->type == 1): ?>
-                  <li><a href="home.php">Check For Spaces</a></li>
-                  <?php endif; ?>
                   <?php if($project->type == 7): ?>
                   <li><a href="create_departments.php">Create Departments</a></li>
                   <?php endif; ?>

@@ -18,9 +18,9 @@ include("header.php");
             
             if ($lists->num_rows > 0) :?>
                 <?php if ($unallocted == 0) : ?>
-                    <div class="alert alert-warning">You have <?= $unallocted ?> unallocated students. Please allocate.</div>
+                    <div class="alert alert-warning">You have <?= $unallocted ?> unallocated spaces. Please allocate.</div>
                 <?php else : ?>
-                    <div class="alert alert-success">You have allocated all your students. Well done!</div>
+                    <div class="alert alert-success">You have allocated all your spaces. Well done!</div>
                 <?php endif; ?>
                 <table class="table table-striped table-border checkout-table table-responsive">
                     <tbody>
@@ -33,7 +33,7 @@ include("header.php");
                     </tbody>
                 </table>
             <?php else : ?>
-                <div class="alert alert-warning">You Have No industry Supervisors</div>
+                <div class="alert alert-warning">You Have No Spaces To Allocate</div>
             <?php endif; ?>
 
         </div>

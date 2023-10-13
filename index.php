@@ -24,19 +24,19 @@
         <div class="col-md-4 col-xs-12">
           <div class="features-item">
             <h3 class="features-title font-alt">Create Account</h3>
-            <p>Create Accounts for Users, Clinical Staff and Admins</p>
+            <p>Create Accounts for Clinical Staffs.</p>
           </div>
         </div>
         <div class="col-md-4 col-xs-12">
           <div class="features-item">
             <h3 class="features-title font-alt">Space Management Module</h3>
-            <p>Hospital space Management will have Department Manager, System Administrator, Clinical Staff,  Interfaces Faciltator Administrator, Clinical Staff</p>
+            <p>Hospital space Management will have Departments and More. The Facilities administrator will be in charge of This section </p>
           </div>
         </div>
         <div class="col-md-4 col-xs-12">
           <div class="features-item">
-            <h3 class="features-title font-alt"></h3>
-            <p></p>
+            <h3 class="features-title font-alt">Admin</h3>
+            <p>The Admin will add available Equipment And Create Departments in the Hospital</p>
           </div>
         </div>
       </div>

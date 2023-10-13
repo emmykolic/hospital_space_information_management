@@ -78,7 +78,7 @@ $prow = $prow->fetch_assoc();
       <?php elseif ($project->type == 7) : ?>
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
-            <h2>Facilitator Administrator</h2>
+            <h2>Facilities administrator</h2>
           </div>
         </div>
         <div class="row">
@@ -183,7 +183,7 @@ $prow = $prow->fetch_assoc();
               <?php if ($equipments_num > 0) : ?>
                 <div class="alert alert-warning">You have <?= $equipments_num ?> Available Equipment </div>
               <?php else : ?>
-                <div class="alert alert-success">You Don't </div>
+                <div class="alert alert-success">You Don't Have Available Equipment</div>
               <?php endif; ?>
               <table class="table table-striped table-border checkout-table table-responsive">
                 <thead>
